@@ -34,4 +34,4 @@ INSERT INTO t_salary (
 ('user@co.jp', '2020/11', 280000)
 , ('user@co.jp', '2020/12', 290000)
 , ('user@co.jp', '2021/01', 300000)
-;VALUES('1', 'Tom', 30);
+;

@@ -9,8 +9,15 @@ public interface UserService {
 	public void signup(MUser user);
 	
 	//ユーザ取得
-	public List<MUser> getUsers();
+	public List<MUser> getUsers(MUser user);
 	
 	//ユーザ取得(1件)
 	public MUser getUserOne(String userId);
+	
+	//ユーザ更新(1件)
+	public void updateUserOne(String userId,String password,String userName);
+	
+	//ユーザ削除
+	public void deleteUserOne(String userId);
+
 }
