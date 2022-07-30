@@ -30,7 +30,7 @@ public class SignupForm {
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@NotNull(groups=ValidGroup1.class)
-	private Date birthDay;
+	private Date birthday;
 	
 	@Min(value=20,groups=ValidGroup2.class)
 	@Max(value=100,groups=ValidGroup2.class)

@@ -10,7 +10,7 @@
     <id column="user_id" property="userId" />
     <result column="password" property="password" />
     <result column="user_name" property="userName" />
-    <result column="birthDay" property="birthDay" />
+    <result column="birthday" property="birthday" />
     <result column="age" property="age" />
     <result column="gender" property="gender" />
     <result column="department_id" property="departmentId" />
@@ -39,7 +39,7 @@
         user_id
       , password
       , user_name
-      , birthDay
+      , birthday
       , age
       , gender
       , department_id
@@ -49,7 +49,7 @@
         #{userId}
       , #{password}
       , #{userName}
-      , #{birthDay}
+      , #{birthday}
       , #{age}
       , #{gender}
       , #{departmentId}
@@ -80,7 +80,7 @@
         m_user.user_id
       , m_user.password
       , m_user.user_name
-      , m_user.birthDay
+      , m_user.birthday
       , m_user.age
       , m_user.gender
       , m_department.department_id
