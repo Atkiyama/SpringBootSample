@@ -18,39 +18,44 @@ import com.example.form.UserListForm;
 @Controller
 @RequestMapping("/user")
 public class UserListController {
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ModelMapper modelMapper;
-	
-	
-	
-	@GetMapping("/list")
-	public String getUserList(@ModelAttribute UserListForm form,Model model) {
-		//formをMUserクラスに変換
-		MUser user = modelMapper.map(form, MUser.class);
-		
-		//ユーザ検索
-		List<MUser> userList = userService.getUsers(user);
-		
-		model.addAttribute("userList",userList);
-		
-		return "user/list";
-	}
-	
-	//ユーザ検索処理
-	@PostMapping("/list")
-	public String postUserList(@ModelAttribute UserListForm form,Model model) {
-		//formをMUserクラスに変換
-		MUser user = modelMapper.map(form, MUser.class);
-		
-		//ユーザ検索
-		List<MUser> userList = userService.getUsers(user);
-		
-		model.addAttribute("userList",userList);
-		
-		return "user/list";
-	}
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    /** ユーザー一覧画面を表示 */
+    @GetMapping("/list")
+    public String getUserList(@ModelAttribute UserListForm form, Model model) {
+
+        // formをMUserクラスに変換
+        MUser user = modelMapper.map(form, MUser.class);
+
+        // ユーザー一覧取得
+        List<MUser> userList = userService.getUsers(user);
+
+        // Modelに登録
+        model.addAttribute("userList", userList);
+
+        // ユーザー一覧画面を表示
+        return "user/list";
+    }
+
+    /** ユーザー検索処理 */
+    @PostMapping("/list")
+    public String postUserList(@ModelAttribute UserListForm form, Model model) {
+
+        // formをMUserクラスに変換
+        MUser user = modelMapper.map(form, MUser.class);
+
+        // ユーザー検索
+        List<MUser> userList = userService.getUsers(user);
+
+        // Modelに登録
+        model.addAttribute("userList", userList);
+
+        // ユーザー一覧画面を表示
+        return "user/list";
+    }
 }

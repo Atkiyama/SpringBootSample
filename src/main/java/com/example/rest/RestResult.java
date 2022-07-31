@@ -9,13 +9,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class RestResult {
 
-	//リターンコード
-	private int result;
-	
-	/**
-	 * エラーマップ
-	 * key:フィールド名
-	 * value:エラーメッセージ
-	 */
-	private Map<String,String> errors;
+    /** リターンコード */
+    private int result;
+
+    /** エラーマップ
+     * key: フィールド名
+     * value: エラーメッセージ
+     */
+    private Map<String, String> errors;
 }

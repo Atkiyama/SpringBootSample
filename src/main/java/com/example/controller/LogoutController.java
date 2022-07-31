@@ -8,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class LogoutController {
-	@PostMapping("/logout")
-	public String postLogout() {
-		log.info("ログアウト");
-		return "redirect:/login";
-	}
+
+    /** ログイン画面にリダイレクト */
+    @PostMapping("/logout")
+    public String postLogout() {
+        log.info("ログアウト");
+        return "redirect:/login";
+    }
 }

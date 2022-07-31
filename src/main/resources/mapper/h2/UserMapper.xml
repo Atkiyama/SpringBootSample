@@ -5,7 +5,7 @@
 <!-- Mapperとxmlのマッピング -->
 <mapper namespace="com.example.repository.UserMapper">
 
-<!-- マッピング定義(ユーザー) -->
+  <!-- マッピング定義(ユーザー) -->
   <resultMap type="com.example.domain.user.model.MUser" id="user">
     <id column="user_id" property="userId" />
     <result column="password" property="password" />
@@ -19,19 +19,18 @@
     <collection property="salaryList" resultMap="salary" columnPrefix="salary_"/>
   </resultMap>
 
-    <!-- マッピング定義(部署) -->
+  <!-- マッピング定義(部署) -->
   <resultMap type="com.example.domain.user.model.Department" id="department">
     <id column="department_id" property="departmentId" />
     <result column="department_name" property="departmentName" />
   </resultMap>
 
-    <!-- マッピング定義(給料) -->
+  <!-- マッピング定義(給料) -->
   <resultMap type="com.example.domain.user.model.Salary" id="salary">
     <id column="user_id" property="userId" />
     <id column="year_month" property="yearMonth" />
     <result column="salary" property="salary" />
   </resultMap>
-
 
   <!-- ユーザー1件登録 -->
   <insert id="insertOne">
@@ -56,7 +55,6 @@
       , #{role}
     )
   </insert>
-
 
   <!-- ユーザー複数件取得 -->
   <select id="findMany" resultType="MUser">

@@ -28,69 +28,74 @@ import com.example.form.UserListForm;
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
-	
-	@Autowired
-	private UserService userService;
 
-	@Autowired
-	private ModelMapper modelMapper;
-	
-	@Autowired
-	private MessageSource messageSource;
+    @Autowired
+    private UserService userService;
 
-	//ユーザを検索
-	@GetMapping("/get/list")
-	public List<MUser> getUserList(UserListForm form){
-		
-		MUser user = modelMapper.map(form, MUser.class);
-		
-		//ユーザ一覧取得
-		List<MUser> userList = userService.getUsers(user);
-		return userList;
-	}
-	
-	//ユーザを登録
-	@PostMapping("/signup/rest")
-	public RestResult postSignup(@Validated(GroupOrder.class) SignupForm form,BindingResult bindingResult,Locale locale) {
-		if(bindingResult.hasErrors()) {
-			//チェック結果:NG
-			Map<String,String> errors = new HashMap<>();
-			
-			//エラーメッセージ取得
-			for(FieldError error:bindingResult.getFieldErrors()) {
-				String message = messageSource.getMessage(error, locale);
-				errors.put(error.getField(), message);
-			}
-			
-			//エラー結果の返却
-			
-			return new RestResult(90,errors);		
-		}
-		
-		//formをMUserクラスに変換
-		MUser user = modelMapper.map(form, MUser.class);
-		
-		//ユーザ登録
-		userService.signup(user);
-		
-		//結果の返却
-		return new RestResult(0,null);
-	}
-	
-	//ユーザを更新
-	@PutMapping("/update")
-	public int updateUser(UserDetailForm form) {
-		
-		userService.updateUserOne(form.getUserId(),form.getPassword(),form.getUserName());
-		
-		return 0;
-	}
-	
-	//ユーザを削除
-	@DeleteMapping("/delete")
-	public int deleteUser(UserDetailForm form) {
-		//ユーザを削除
-		userService.deleteUserOne(form.getUserId());
-		return 0;
-	}
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
+    private MessageSource messageSource;
+
+    /** ユーザーを検索 */
+    @GetMapping("/get/list")
+    public List<MUser> getUserList(UserListForm form) {
+
+        // formをMUserクラスに変換
+        MUser user = modelMapper.map(form, MUser.class);
+
+        // ユーザー一覧取得
+        List<MUser> userList = userService.getUsers(user);
+        return userList;
+    }
+
+    /** ユーザーを登録 */
+    @PostMapping("/signup/rest")
+    public RestResult postSignup(@Validated(GroupOrder.class) SignupForm form,
+            BindingResult bindingResult, Locale locale) {
+
+        // 入力チェック結果
+        if (bindingResult.hasErrors()) {
+            // チェック結果:NG
+            Map<String, String> errors = new HashMap<>();
+
+            // エラーメッセージ取得
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                String message = messageSource.getMessage(error, locale);
+                errors.put(error.getField(), message);
+            }
+            // エラー結果の返却
+            return new RestResult(90, errors);
+        }
+
+        // formをMUserクラスに変換
+        MUser user = modelMapper.map(form, MUser.class);
+
+        // ユーザー登録
+        userService.signup(user);
+
+        // 結果の返却
+        return new RestResult(0, null);
+    }
+
+    /** ユーザーを更新 */
+    @PutMapping("/update")
+    public int updateUser(UserDetailForm form) {
+        // ユーザーを更新
+        userService.updateUserOne(form.getUserId(),
+                form.getPassword(),
+                form.getUserName());
+
+        return 0;
+    }
+
+    /** ユーザーを削除 */
+    @DeleteMapping("/delete")
+    public int deleteUser(UserDetailForm form) {
+        // ユーザーを削除
+        userService.deleteUserOne(form.getUserId());
+
+        return 0;
+    }
 }
